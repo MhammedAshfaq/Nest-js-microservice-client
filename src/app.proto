@@ -1,0 +1,32 @@
+// hero/hero.proto
+syntax = "proto3";
+
+package app;
+
+//Declare a service for each controller you have
+service AppController {
+//Decleare an rpc for each method that is called via gRPC
+  rpc Accumulate (NumberId) returns (UserDetails) ;  
+  rpc AddUser(UserDetails) returns (Result);
+  rpc GetAllUsers(Result) returns (allUsers);
+}
+
+
+//Decleare the types used above 
+message NumberId {
+ int32 id = 1;
+}
+
+message UserDetails {
+    int32 id=1;
+    string firstName = 2;
+    string lastName = 3;
+    string email = 4;
+    string isAcvtive= 5;
+}
+ 
+message Result{}
+ 
+message allUsers{
+  repeated UserDetails allusers= 1;
+}
